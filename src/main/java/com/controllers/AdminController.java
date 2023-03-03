@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.services.impl.AdminServiceImpl;
 
+import java.net.URI;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 
@@ -73,9 +76,9 @@ public class AdminController {
 		//return token.generateToken("test@gmail.com");
 	}
 
-	@GetMapping("/tokenIsValid")
-	public Boolean tokenIsValid(@RequestBody String token){
-		return JwtTokenManager.validateToken(token);
+	@PostMapping("/tokenIsValid")
+	public Boolean tokenIsValid(@RequestHeader String Authorization){
+		return JwtTokenManager.validateToken(Authorization);
 	}
 	
 }
